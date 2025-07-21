@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gui-deployment
+  namespace: hello-kubernetes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gui-app
+  template:
+    metadata:
+      labels:
+        app: gui-app
+    spec:
+      containers:
+        - name: gui-container
+          image: your-dockerhub-mohitn007/gui-app:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DISPLAY
+              value: ":0"

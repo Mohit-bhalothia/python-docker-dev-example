@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: load-balancer-service
+  labels:
+    app.kubernetes.io/name: load-balancer-example
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: load-balancer-example 
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: load-balancer-example
+    spec:
+      containers:
+      - name: load-balancer-example
+        image: gcr.io/google-samples/hello-app:2.0 
+        ports:
+        - containerPort: 8080
+  
